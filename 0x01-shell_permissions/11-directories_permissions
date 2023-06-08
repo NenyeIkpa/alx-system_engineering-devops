@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod 744 *.dir
+chmod 744 d*
