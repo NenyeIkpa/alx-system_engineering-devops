@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo chmod -R 711 /alx-systems_engineering-devops/0x01-shell_permissions
+sudo chmod -R 711 .s
