@@ -1,0 +1,2 @@
+#!/bin/bash
+echo cut -f 1 "ubuntu-focal" | sort | uniq -c | sort -nr | head -n 11
