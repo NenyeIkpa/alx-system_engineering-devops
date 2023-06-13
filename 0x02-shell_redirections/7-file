@@ -1,4 +1,4 @@
 #!/bin/bash
 text='"Best School"\'
 text2="\*\\\'${text}'\\\*$\?\*\*\*\*\*:)"
-touch ${text2}
+touch "*\\\\'\"Best School\"'\\\\*$\\?\\*\\*\\*\\*\\*:)"
