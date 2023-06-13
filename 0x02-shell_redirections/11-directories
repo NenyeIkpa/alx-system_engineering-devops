@@ -1,2 +1,2 @@
 #!/bin/bash
-wc 
+find ./ -mindepth 1 -type d -print | wc -l 
