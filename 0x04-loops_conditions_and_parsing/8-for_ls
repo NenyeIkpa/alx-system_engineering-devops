@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Displays the content of the current directory in a list format
+
+for file in *; do
+# Exclude hidden files
+if [[ "$file" != .* ]]; then
+# Use cut to display only the part of the name after the first dash
+new_name=$(echo "$file" | cut -d '-' -f 2-)
+echo "$new_name"
+fi
+done
