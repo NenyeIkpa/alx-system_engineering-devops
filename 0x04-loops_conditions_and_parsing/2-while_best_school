@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# This script displays "Best School" 10 times using a while loop.
+
+i=1
+while [ $i -le 10 ]; do
+	echo "Best School"
+	((i++))
+done
+
+#note that spaces are very important. take note of
+#number of spaces provided between texts
+#alternatively:
+#to_print = "Best School"
+#i=0
+#while [$i -le 10 ]; do
+#echo "$to_print"
+#i=$[$i + 1] -> deprecated
+#done
