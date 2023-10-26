@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Prints 1 - 100 with Fizz, Buzz and FizBuzz at intervals of
+# multiples of 3, 5 and both respectively
+
+for num in {1..100}; do
+	if [ $((num % 3)) -eq 0 ] && [ $((num % 5)) -eq 0 ]; then
+		echo "FizzBuzz"
+	elif [ $((num % 3)) -eq 0 ]; then
+		echo "Fizz"
+	elif [ $((num % 5)) -eq 0 ]; then
+		echo "Buzz"
+	else
+		echo "$num"
+	fi
+done
