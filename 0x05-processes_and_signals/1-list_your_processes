@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 # Lists processes
 
-top
+# -U option displays the processes of all users
+# -p displays the pids of all processes
+pstree -U -p
