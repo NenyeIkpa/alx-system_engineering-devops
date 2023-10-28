@@ -4,7 +4,7 @@
 # Function to terminate sigterm
 function terminate()
 {
-	echo "I am invincible!"
+	echo "I am invincible!!!"
 }
 
 # Trapo SIGTERM and call terminate function
