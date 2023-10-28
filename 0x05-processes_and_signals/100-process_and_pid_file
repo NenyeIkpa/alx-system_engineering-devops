@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Creates a file, displays messages and/or deletes file according to signals received
+
+function on_sigterm()
+{
+	echo "I hate the kill command"
+	rm -rf /var/run/myscript.pid
+	exit
+}
+
+echo $$ > /var/run/myscript.pid
+trap on_sigterm SIGTERM
+trap "Y U no love me?!" SIGINT
+trap "rm -rf /var/run/myscript.pid; exit" SIGQUIT
+while true; do
+	echo "To infinity and beyond"
+done
