@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Displays I am invincible!!! when receiving a SIGTERM signal.
+
+# Function to terminate sigterm
+function terminate()
+{
+	echo "I am invincible!"
+}
+
+# Trapo SIGTERM and call terminate function
+trap terminate SIGTERM
+
+while true; do
+	echo "To infinity and beyond"
+	sleep 2
+done
