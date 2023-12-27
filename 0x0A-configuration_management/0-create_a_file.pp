@@ -1,5 +1,7 @@
+# Create a file in temp using puppet
+
 file { '/tmp/school':
-  ensure  => '/tmp/school',
+  ensure  => 'present',
   owner   => 'www-data',
   group   => 'www-data',
   mode    => '0744',
