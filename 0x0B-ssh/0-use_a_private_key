@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# uses ssh key to connect to a private server
+# with a private key and user
+
+ssh ubuntu@100.25.21.2461
