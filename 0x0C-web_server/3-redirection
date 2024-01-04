@@ -13,10 +13,8 @@ echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 
 # redirect server(/redirect me) to another page permanently
 string_to_find='server_name _;'
-string_to_append='\\n\tlocation /redirect_me {\n\treturn 301 http://google.com;\n\t}'
-if ! grep -q "$string_to_append" /etc/nginx/sites-available/default; then
-	sed -i "/$string_to_find/a$string_to_append" /etc/nginx/sites-available/default
-fi
+string_to_append='\\n\tlocation /redirect_me {\n\t\treturn 301 https://www.google.com;\n\t}'
+sed -i "/$string_to_find/a$string_to_append" /etc/nginx/sites-available/default
 
 # Restart Nginx (without using systemctl)
 sudo service nginx restart
