@@ -14,7 +14,7 @@ echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 # set custom 404 message
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html > /dev/null
 string_to_find='server_name _;'
-string_to_append='\\n\terror_page 404 /404.html;\n\tlocation  /404.html {\n\t    internal;\n}'
+string_to_append='\\n\terror_page 404 /404.html;\n\tlocation  /404.html {\n\t\tinternal;\n\t}'
 sed -i "/$string_to_find/a$string_to_append" /etc/nginx/sites-available/default
 
 # Restart Nginx (without using systemctl)
