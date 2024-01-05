@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Installs Nginx Web Server with conditions
+# and sets a custom message for 404
+
+# Update package list
+sudo apt update
+
+# Install Nginx
+sudo apt install -y nginx
+
+# replace default text in index.html with "Hello World!"
+echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
+
+# set custom 404 message
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html > /dev/null
+
+# Restart Nginx (without using systemctl)
+sudo service nginx restart
