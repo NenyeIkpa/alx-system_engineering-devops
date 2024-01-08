@@ -39,8 +39,8 @@ if ! grep -q "$nginx_404" "$path_to_file"; then
 fi
 
 # add custom HTTP header: X-Served-By
-string_to_append="\\\n\tadd_header X-Served-By 209149-web-01"
-nginx_custom_header="add_header X-Served-By"
+string_to_append="\\\n\tadd_header X-Served-By $hostname"
+nginx_custom_header="add_header X-Served-By $hostname"
 if ! grep -q "$nginx_custom_header" "$path_to_file"; then
 	sed -i "/$string_to_find/a$string_to_append" /etc/nginx/sites-available/default
 fi
