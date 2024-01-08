@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Install and configure HAproxy on load balancing server
+# Configure HAproxy so that it send traffic to the 2 web servers
+# Distribute requests using a roundrobin algorithm
+
+# Update package list
+sudo apt update
+
+# Install Nginx
+sudo apt install -y haproxy
+
+path_to_file="/etc/haproxy/haproxy.cfg"
+DOMAIN_NAME='devshowcase.tech'
+# remove all commented lines
+# sed -i "/^\W*#.*/" /etc/nginx/sites-available/default
+
+# edit the HAProxy configuration file to include the
+# frontend and backend configurations
+string_to_append="frontend http
+	bind *:80
+	mode http
+	default_backend $DOMAIN_NAME-backend
+
+backend $DOMAIN_NAME-backend
+	balance roundrobin
+	server 209149-web-01 100.25.21.246:80 check
+	server 209149-web-02 3.85.41.202:80 check"
+
+if ! grep -q "$string_to_append" "$path_to_file"; then
+	echo "\\$string_to_append" | sudo tee -a /etc/haproxy/haproxy.cfg
+fi
+
+# Make sure that HAproxy can be managed via an init script
+sudo systemctl enable haproxy
+
+# Restart Nginx (without using systemctl)
+sudo haproxy restart
