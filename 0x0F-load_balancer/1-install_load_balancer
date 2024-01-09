@@ -10,21 +10,20 @@ sudo apt update
 sudo apt install -y haproxy
 
 path_to_file="/etc/haproxy/haproxy.cfg"
-DOMAIN_NAME='devshowcase.tech'
 # remove all commented lines
 # sed -i "/^\W*#.*/" /etc/nginx/sites-available/default
 
 # edit the HAProxy configuration file to include the
 # frontend and backend configurations
-string_to_append="frontend http
-	bind *:80
-	mode http
-	default_backend $DOMAIN_NAME-backend
+string_to_append="backend devshowcase.tech-backend
+        balance roundrobin
+        server 209149-web-01 100.25.21.246:80 check
+        server 209149-web-02 3.85.41.202:80 check
 
-backend $DOMAIN_NAME-backend
-	balance roundrobin
-	server 209149-web-01 100.25.21.246:80 check
-	server 209149-web-02 3.85.41.202:80 check"
+frontend http
+        bind *:80
+        mode http
+        default_backend devshowcase.tech-backend"
 
 if ! grep -q "$string_to_append" "$path_to_file"; then
 	echo "\\$string_to_append" | sudo tee -a /etc/haproxy/haproxy.cfg
