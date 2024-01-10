@@ -6,8 +6,11 @@
 # Update package list
 sudo apt update
 
-# Install Nginx
+# Install HAProxy
 sudo apt install -y haproxy
+
+# Adjust the firewall, enabling the most restrictive profile configured
+sudo ufw allow 'Nginx HTTP'
 
 path_to_file="/etc/haproxy/haproxy.cfg"
 # remove all commented lines
