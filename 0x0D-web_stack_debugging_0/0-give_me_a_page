@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# run Apache in the docker container to return a page
-# containing "Hello Holberton" when querying the root of it.
+# run Apache in the docker container to return a page containing "Hello Holberton" when querying the root of it.
 
 echo "ServerName localhost" >> /etc/apache2/apache2.conf
 service apache2 start
