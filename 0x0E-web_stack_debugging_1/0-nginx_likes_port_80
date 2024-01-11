@@ -17,11 +17,6 @@ server {
 }
 EOL
 
-# Enable server blocks by creating symbolic links from these files to the sites-enabled
-# If a symlink already exists, remove and recreate
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-
 # Restart Nginx to apply changes
-service nginx restart
+sudo service nginx restart
 
