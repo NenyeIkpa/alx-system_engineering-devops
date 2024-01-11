@@ -9,6 +9,9 @@ sudo apt update
 # Install HAProxy
 sudo apt install -y haproxy
 
+# backup default server config file
+sudo cp /etc/haproxy/haproxy.cfg haproxy_default.backup
+
 path_to_file="/etc/haproxy/haproxy.cfg"
 # remove all commented lines
 # sed -i "/^\W*#.*/" /etc/nginx/sites-available/default
