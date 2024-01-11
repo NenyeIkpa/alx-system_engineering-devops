@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# what’s keeping your Ubuntu container’s Nginx installation from listening on port 8?
+# Enable server blocks by creating symbolic links from these files to the sites-enabled
+# If a symlink already exists, remove and recreate
+# Restart nginx
+
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
