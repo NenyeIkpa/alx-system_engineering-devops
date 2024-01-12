@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# HAproxy SSL termination: HAproxy is configured to handle encrypted traffic,
+# unencrypt it and pass it on to its destination.
+# Create a certificate using certbot and configure HAproxy to
+# accept encrypted traffic for your subdomain www..
+
+# Install HAProxy
+sudo apt-get update
+sudo apt-get install -y haproxy
+
+# Obtain SSL certificate using Certbot
+sudo apt-get install -y certbot
+sudo certbot certonly --standalone -d www.devshowcase.tech
+
+# Configure HAProxy for SSL termination
+cat <<EOF | sudo tee -a /etc/haproxy/haproxy.cfg
+frontend www-https
+    bind *:443 ssl crt /etc/letsencrypt/live/www.devshowcase.tech/fullchain.pem
+
+    acl is_devshowcase path -i /
+    use_backend devshowcase_backend if is_devshowcase
+
+    default_backend devshowcase_backend
+
+backend devshowcase_backend
+    server webserver1 100.25.21.246:80
+
+backend devshowcase_backend
+    server webserver2 3.85.41.202:80
+EOF
+
+# Restart HAProxy
+sudo service haproxy restart
+
+echo "HAProxy has been configured for SSL termination."
+
