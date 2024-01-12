@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# Configure a domain zone so that  subdomain wwwand other subdomains
+# point to the load-balancer IP
+# Function to display information about a subdomain
+
+display_info() {
+    local domain="$1"
+    local subdomain="$2"
+
+    # Use dig to get information about the subdomain
+    local dig_output
+    dig_output=$(dig "$subdomain.$domain" +short)
+
+    # Extract record type and destination using awk
+    local record_type
+    record_type=$(echo "$dig_output" | awk 'NR==1 {print $2}')
+    local destination
+    destination=$(echo "$dig_output" | awk 'NR==1 {print $1}')
+
+    # Display information
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+}
+
+# Main script
+
+# Check if the number of arguments is correct
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
+
+domain="$1"
+subdomain="$2"
+
+# Default subdomains
+subdomains=("www" "lb-01" "web-01" "web-02")
+
+# If a specific subdomain is provided, display information for that subdomain only
+if [ -n "$subdomain" ]; then
+    display_info "$domain" "$subdomain"
+else
+    # Display information for default subdomains
+    for sub in "${subdomains[@]}"; do
+        display_info "$domain" "$sub"
+    done
+fi
