@@ -10,7 +10,7 @@ sudo apt update
 sudo apt install -y haproxy
 
 # backup default server config file
-sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.ba
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
 
 path_to_file="/etc/haproxy/haproxy.cfg"
 # remove all commented lines
