@@ -10,7 +10,7 @@ sudo apt update
 sudo apt install -y haproxy
 
 # backup default server config file
-sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.ba
+sudo cp /etc/haproxy/haproxy.cfg haproxy_default.backup
 
 path_to_file="/etc/haproxy/haproxy.cfg"
 # remove all commented lines
@@ -32,14 +32,21 @@ if ! grep -q "$string_to_append" "$path_to_file"; then
 	echo "\\$string_to_append" | sudo tee -a /etc/haproxy/haproxy.cfg
 fi
 
+# Make sure that HAproxy can be managed via an init script
+# shellcheck disable=SC2154
+# echo "$haproxy_config" | sudo dd status=none of=/etc/haproxy/haproxy.cfg
+
+# enable haproxy to be started by init script
+echo "ENABLED=1" | sudo dd status=none of=/etc/default/haproxy
+
+if [ "$(pgrep -c haproxy)" -le 0 ]; then
+	sudo service haproxy start
+else
+	sudo service haproxy restart
+fi
+
+# Make sure that HAproxy can be managed via an init script
+# sudo systemctl enable haproxy
+
 # Restart Nginx (without using systemctl)
-sudo service haproxy restart
-
-# Enable HAproxy init script
-sudo systemctl enable haproxy
-
-# Verify HAproxy configuration
-sudo haproxy -c -f /etc/haproxy/haproxy.cfg
-
-# Display status
-sudo service haproxy status
+# sudo haproxy restart
