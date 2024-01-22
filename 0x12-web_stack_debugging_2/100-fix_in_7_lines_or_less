@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Non executable task 1 -run nignx as user not root
+echo "user nginx;" > /etc/nginx/nginx.conf
+echo "listen 8080;" > /etc/nginx/sites-available/default
+nginx
