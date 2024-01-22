@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Nginx is running as the nginx user.
+
+# Set the nginx user in the nginx.conf file
+sed -i 's/user\s*nginx;/user nginx;/g' /etc/nginx/nginx.conf
+
+# Update the default site configuration to listen on all active IPs on port 8080
+sed -i 's/listen\s*80;/listen 8080;/g' /etc/nginx/sites-available/default
+
+# Restart Nginx to apply the changes
+service nginx restart
+
+# Display the Nginx processes and check port 8080 connectivity
+# ps auxff | grep ngin[x]
+# nc -z 0 8080
+
