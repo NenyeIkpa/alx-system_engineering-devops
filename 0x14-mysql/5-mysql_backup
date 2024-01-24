@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# MySQL backup
+
+# MySQL root password
+ROOT_PASSWD=$1
+
+# Get the current date for the archive name
+CURRENT_DATE=$(date +'%d-%m-%Y')
+
+# MySQL dump command
+MYSQL_DUMP_CMD="mysqldump -u root -p${ROOT_PASSWD} --all-databases > backup.sql"
+
+# Compress the MySQL dump to a tar.gz archive
+ARCHIVE_NAME="${CURRENT_DATE}.tar.gz"
+TAR_CMD="tar -czf ${ARCHIVE_NAME} backup.sql"
+
+# Execute the MySQL dump and compression
+eval $MYSQL_DUMP_CMD
+eval $TAR_CMD
+
+echo "Backup completed. Goodbye. Archive: ${ARCHIVE_NAME}"
