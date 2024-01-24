@@ -18,4 +18,4 @@ TAR_CMD="tar -czf ${ARCHIVE_NAME} backup.sql"
 eval $MYSQL_DUMP_CMD
 eval $TAR_CMD
 
-echo "Backup completed. Goodbye. Archive: ${ARCHIVE_NAME}"
+echo "Backup completed. Goodbye."
