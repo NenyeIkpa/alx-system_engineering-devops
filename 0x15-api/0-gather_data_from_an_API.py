@@ -2,8 +2,8 @@
 """
     Gather data from an API
 """
-import requests
 import json
+import requests
 import sys
 
 
@@ -36,12 +36,11 @@ done_tasks = sum(1 for todo in todos if todo['completed'])
 
 
 # Displaying information
-print(f"Employee {user['name']} is done with tasks \
-        ({done_tasks}/{total_tasks}):")
-print("Completed tasks:")
+print(f"Employee {user['name']} is done with tasks "
+      f"({done_tasks}/{total_tasks}):")
 for todo in todos:
     if todo['completed']:
-        print(f"\t{todo['title']}")
+        print(f"\t {todo['title']}")
 
 
 if __name__ == "__main__":
