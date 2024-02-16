@@ -15,5 +15,9 @@ def number_of_subscribers(subreddit):
                      headers={'User-Agent': '0x16-api_advanced:project:\
 v1.0.0 (by /u/nenyeikpa)'}).json()
 
-    subs = r.get("data", {}).get("subscribers", 0)
-    return subs
+    if r.statusCode == 302:
+        return 0
+
+    if r.statusCode == 200:
+        subs = r.get("data", {}).get("subscribers", 0)
+        return subs
