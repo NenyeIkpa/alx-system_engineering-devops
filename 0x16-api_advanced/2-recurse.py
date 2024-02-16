@@ -43,13 +43,6 @@ v1.0.0 (by /u/nenyeikpa)'}
             else:
                 return hot_list
         else:
-            print(f"Error: {response.status_code} - {response.text}")
             return None
     except requests.RequestException as e:
-        print(f"Request Exception: {e}")
         return None
-
-# Example usage:
-subreddit_name = "python"
-result = recurse(subreddit_name)
-print(result)
