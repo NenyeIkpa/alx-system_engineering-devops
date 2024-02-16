@@ -19,5 +19,7 @@ v1.0.0 (by /u/nenyeikpa)"
     if response.status_code == 404:
         print("None")
         return
-    results = response.json().get("data")
-    [print(c.get("data").get("title")) for c in results.get("children")]
+    results = response.json()
+    if 'data' in data and 'children' in data['data']:
+        for post in data['data']['children']:
+            print(post['data']['title'])
