@@ -22,7 +22,12 @@ v1.0.0 (by /u/nenyeikpa)'}
     params = {'limit': 100, 'after': after} if after else {'limit': 100}
 
     try:
-        response = requests.get(url, headers=headers, params=params, allow_redirects=False)
+        response = requests.get(
+            url,
+            headers=headers,
+            params=params,
+            allow_redirects=False
+        )
 
         # Check for redirection manually
         if response.status_code == 302:
@@ -33,7 +38,11 @@ v1.0.0 (by /u/nenyeikpa)'}
         if response.status_code == 200:
             data = response.json().get("data", {})
             children = data.get("children", [])
-            titles = [child.get("data", {}).get("title", "") for child in children]
+            titles = [child.get(
+                "data", {}
+            ).get(
+                "title", ""
+            ) for child in children]
             hot_list.extend(titles)
 
             # Recursive call for the next page
