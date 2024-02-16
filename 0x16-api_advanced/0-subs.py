@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-queries the Reddit API and returns the number of subscribers
-(not active users, total subscribers) for a given subreddit
+    Queries the Reddit API and returns the number of subscribers
+    (not active users, total subscribers) for a given subreddit
 """
 
 
