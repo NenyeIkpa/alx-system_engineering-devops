@@ -13,7 +13,7 @@ def number_of_subscribers(subreddit):
 
     r = requests.get('http://www.reddit.com/r/{}/about.json'.format(subreddit),
                      headers={'User-Agent': '0x16-api_advanced:project:\
-v1.0.0 (by /u/nenyeikpa)'}).json()
+v1.0.0 (by /u/nenyeikpa)'}, allow_redirects=false).json()
 
     if r.statusCode == 302:
         return 0
