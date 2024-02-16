@@ -17,7 +17,7 @@ def number_of_subscribers(subreddit):
 
     # Set a custom User-Agent to avoid Too Many Requests errors
     headers = {"User-Agent": ""0x16-api_advanced:project:\
-v1.0.0 (by /u/nenyeikpa)}
+v1.0.0 (by /u/nenyeikpa)}.json()
 
     try:
         # Make the GET request to the Reddit API
